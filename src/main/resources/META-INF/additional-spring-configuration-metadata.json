@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "session.jdbc.initialize-schema",
+    "type": "java.lang.String",
+    "description": "A description for 'session.jdbc.initialize-schema'"
+  },
+  {
+    "name": "mvc.view.profix",
+    "type": "java.lang.String",
+    "description": "A description for 'mvc.view.profix'"
+  },
+  {
+    "name": "spring.mvc.view.profix",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.mvc.view.profix'"
+  },
+  {
+    "name": "server.tomcat.file-encoding",
+    "type": "java.lang.String",
+    "description": "A description for 'server.tomcat.file-encoding'"
+  },
+  {
+    "name": "server.mybatis.mapper-locations",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mybatis.mapper-locations'"
+  },
+  {
+    "name": "server.mybatis.type-aliases-package",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mybatis.type-aliases-package'"
+  }
+]}
