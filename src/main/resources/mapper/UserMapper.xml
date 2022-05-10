@@ -51,6 +51,11 @@
           u_auth
        ) VALUES
          <foreach item="authority" index="index" collection="authorities" separator=",">
+         <!-- mybatis엘리먼트는 문자열로 명시할 수 있고 반복간에 둘 수 있는 구분자도 추가할 수 있다.  -->
+         <!-- item => 전달받은 인자 값을 alias명으로 대체, index => 반복되는 구문 번호, 0부터 순차적으로 증가 -->
+         <!-- collection => 전달받은 인자. List or Array 형태만 가능 -->
+         <!-- separator=> 반복 되는 사이에 출력할 문자열 -->
+         
             (#{username}, #{authority.role})
          </foreach>
          ON DUPLICATE KEY

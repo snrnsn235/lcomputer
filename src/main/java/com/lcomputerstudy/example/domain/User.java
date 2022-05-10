@@ -64,6 +64,8 @@ public class User implements UserDetails {
 	}
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
+		//계정이 갖고 있는 권한 목록을 리턴한다.
+		//spring security에서 원한 객체는 org.springframework.security.core.GrantedAuthority인터페이스를 구현한 클래스 객체로 만들면 된다.
 	}
 
 	@Override
