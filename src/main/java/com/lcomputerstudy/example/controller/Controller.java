@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.lcomputerstudy.example.domain.Board;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.service.BoardService;
@@ -36,6 +38,18 @@ public class Controller {
 		return "/index";
 	}
 
+	@Secured({ "ROLE_ADMIN" })
+	@RequestMapping(value="/user/list", method=RequestMethod.GET)
+	public String getList(Model model) {
+		List<User> list = userservice.getList();
+		model.addAttribute("list", list);
+		logger.debug("debug");
+		logger.info("info");
+		logger.error("error");
+		
+		return "/userList";
+	}
+	
 	@RequestMapping("/beforeSignUp")
 	public String beforeSignUp() {
 		return "/signup";
@@ -72,6 +86,7 @@ public class Controller {
 	public String admin(Model model) {
 		return "/admin";
 	}
+	
 
 	@Secured({ "ROLE_USER" })
 	@RequestMapping(value = "/user/info")

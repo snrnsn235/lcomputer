@@ -1,6 +1,8 @@
 package com.lcomputerstudy.example.service;
 
 import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import com.lcomputerstudy.example.domain.User;
@@ -17,4 +19,11 @@ public interface UserService extends UserDetailsService{
 	   
 	   // 시큐리티 권한 얻기
 	   Collection<GrantedAuthority> getAuthorities(String username);
+	   
+	   //회원리스트
+	   public List<User> getList();
+
+	
 	}
+
+	

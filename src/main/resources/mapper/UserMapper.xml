@@ -1,65 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lcomputerstudy.example.mapper.UserMapper">
- <!-- 권한 읽기 -->
-    <select id="readAuthorities" parameterType="String" resultType="org.springframework.security.core.authority.SimpleGrantedAuthority">
-       SELECT         u_auth
-       FROM         lc_auth
-       WHERE          1=1
-       AND            u_id = #{username}
-    </select>
+	<!-- 권한 읽기 -->
+	<select id="readAuthorities" parameterType="String"
+		resultType="org.springframework.security.core.authority.SimpleGrantedAuthority">
+		SELECT u_auth
+		FROM lc_auth
+		WHERE 1=1
+		AND u_id = #{username}
+	</select>
 
-   <!-- 회원 불러오기 -->
-   <select id="readUser" parameterType="String" resultType="User">
-      SELECT         u_id                 						    as   username,
-			                 u_password             					as password,
-			                 u_name                						as   uName,
-			                 u_isAccountNonExpired        as isAccountNonExpired,
-			                 u_isAccountNonLocked    	    as isAccountNonLocked,
-			                 u_isCredentialNonExpired    as isCredentialsNonExpired,
-			                 u_isEnabled          				    as isEnabled
-      FROM         lc_user
-      WHERE         1=1
-      AND            u_id   =   #{username}
-   </select>
-   
-   <!-- 회원 등록 -->
-   <insert id="createUser" parameterType="User">
-      INSERT INTO lc_user (
-         u_id,
-         u_password,
-         u_name,
-         u_isAccountNonExpired,
-         u_isAccountNonLocked,
-         u_isCredentialNonExpired,
-         u_isEnabled
-      ) VALUES (
-         #{username},
-         #{password},
-         #{uName},
-         #{isAccountNonExpired},
-         #{isAccountNonLocked},
-         #{isCredentialsNonExpired},
-         #{isEnabled}
-      )
-   </insert>   
-   
-    <!-- 유저 권한 추가 -->
-    <insert id="createAuthority" parameterType="org.springframework.security.core.GrantedAuthority">
-       INSERT INTO lc_auth (
-          u_id,
-          u_auth
-       ) VALUES
-         <foreach item="authority" index="index" collection="authorities" separator=",">
-         <!-- mybatis엘리먼트는 문자열로 명시할 수 있고 반복간에 둘 수 있는 구분자도 추가할 수 있다.  -->
-         <!-- item => 전달받은 인자 값을 alias명으로 대체, index => 반복되는 구문 번호, 0부터 순차적으로 증가 -->
-         <!-- collection => 전달받은 인자. List or Array 형태만 가능 -->
-         <!-- separator=> 반복 되는 사이에 출력할 문자열 -->
-         
-            (#{username}, #{authority.role})
-         </foreach>
-         ON DUPLICATE KEY
-         UPDATE
-            u_id = #{username}
-    </insert>
+	<!-- 회원 불러오기 -->
+	<select id="readUser" parameterType="String" resultType="User">
+		SELECT u_id as username,
+		u_password as password,
+		u_name as uName,
+		u_isAccountNonExpired as isAccountNonExpired,
+		u_isAccountNonLocked as isAccountNonLocked,
+		u_isCredentialNonExpired as isCredentialsNonExpired,
+		u_isEnabled as isEnabled
+		FROM lc_user
+		WHERE 1=1
+		AND u_id = #{username}
+	</select>
+
+	<!-- 회원 등록 -->
+	<insert id="createUser" parameterType="User">
+		INSERT INTO lc_user (
+		u_id,
+		u_password,
+		u_name,
+		u_isAccountNonExpired,
+		u_isAccountNonLocked,
+		u_isCredentialNonExpired,
+		u_isEnabled
+		) VALUES (
+		#{username},
+		#{password},
+		#{uName},
+		#{isAccountNonExpired},
+		#{isAccountNonLocked},
+		#{isCredentialsNonExpired},
+		#{isEnabled}
+		)
+	</insert>
+
+	<!-- 유저 권한 추가 -->
+	<insert id="createAuthority"
+		parameterType="org.springframework.security.core.GrantedAuthority">
+		<!--parameterType=> 자바에서 String 값이 들어올거란걸 인지시켜준다 -->
+		INSERT INTO lc_auth (
+		u_id,
+		u_auth
+		) VALUES
+		<foreach item="authority" index="index"
+			collection="authorities" separator=",">
+			<!-- foreach엘리먼트는 매우 강력하고 collection 을 명시하는 것을 허용한다. -->
+			<!-- 이 엘리먼트는 문자열로 명시할 수 있고 반복간에 둘 수 있는 구분자도 추가할 수 있다. -->
+			<!-- item => 전달받은 인자 값을 alias명으로 대체, index => 반복되는 구문 번호, 0부터 순차적으로 증가 -->
+			<!-- collection => 전달받은 인자. List or Array 형태만 가능 -->
+			<!-- separator=> 반복 되는 사이에 출력할 문자열 -->
+
+			(#{username}, #{authority.role})
+		</foreach>
+		ON DUPLICATE KEY
+		UPDATE
+		u_id = #{username}
+	</insert>
+
+	<!-- 회원리스트 -->
+	<select id="getList" resultType="User">
+		SELECT	 u_id   as username,
+		u_password		as password,
+		u_name 		 	as nName,
+		u_datetime 		as uDateTime
+		FROM lc_user
+	</select>
 </mapper>

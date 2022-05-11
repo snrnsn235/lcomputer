@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <h1>Home Page</h1>
+     <h1 style = "text-align:center;">Home Page</h1>
+     <h2 style = "text-align:center;">환영합니다.</h2>
         <hr>
         <div>
 	        <sec:authorize access="isAnonymous()">
@@ -17,15 +18,16 @@
 	           <a href="/beforeSignUp">회원가입</a>
 	        </sec:authorize>
 	        <sec:authorize access="isAuthenticated">
-	           <a href="/logout">로그아웃</a>
+	           <a href="/logout" >로그아웃</a>
 	           <sec:authentication property="principal" var="principal"/>
-	           <h2>${principal }</h2>
+	           <!-- <h2>${principal }</h2> -->
 	        </sec:authorize>
 	    </div>
 	    <div>
          	<sec:authorize access="isAuthenticated()">        
                <a href="/user/info">내 정보</a>
                <a href="/admin">관리자</a>
+               <a href="/user/list">회원리스트</a>
             </sec:authorize>
         </div>   
 </body>

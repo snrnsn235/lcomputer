@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>마이 페이지</h1>
+	<h1 style = "text-align:center;">마이 페이지</h1>
 	<hr>
         <div>
            <sec:authorize access="isAuthenticated()">

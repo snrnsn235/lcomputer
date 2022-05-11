@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>관리자 페이지</h1>
+	<h1 style = "text-align:center;">관리자 페이지</h1>
+	<hr>
+	<a href="/">돌아가기</a>
 </body>
 </html>
