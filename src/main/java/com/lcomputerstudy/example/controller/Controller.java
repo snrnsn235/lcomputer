@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ import com.lcomputerstudy.example.domain.Board;
 import com.lcomputerstudy.example.domain.User;
 import com.lcomputerstudy.example.service.BoardService;
 import com.lcomputerstudy.example.service.UserService;
-
 @org.springframework.stereotype.Controller
 public class Controller {
 	
@@ -37,7 +35,7 @@ public class Controller {
 
 		return "/index";
 	}
-
+	//회원리스트
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value="/user/list", method=RequestMethod.GET)
 	public String getList(Model model) {
@@ -50,11 +48,22 @@ public class Controller {
 		return "/userList";
 	}
 	
+	//회원 상세페이지
+	@Secured({ "ROLE_ADMIN" })
+	@RequestMapping(value="/user/detail")
+	public String memberView(User user, Model model) {
+		//model.addAttribute를 통해 회원정보를 model에 저장
+		model.addAttribute("user", userservice.viewMember(user));
+		logger.info("클릭한 아이디 : " + user.getUsername());
+		return "/userDetail";
+	}
+	
 	@RequestMapping("/beforeSignUp")
 	public String beforeSignUp() {
 		return "/signup";
 	}
 
+	//회원가입하기
 	@RequestMapping("/signup")
 	public String signup(User user) {
 		// 비밀번호 암호화
@@ -75,25 +84,29 @@ public class Controller {
 
 		return "/login";
 	}
-
+	
+	//로그인
 	@RequestMapping(value = "/login")
 	public String beforeLogin(Model model) {
 		return "/login";
 	}
-
+	
+	//관리자페이지
+	//관리자만 들어갈수있음
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/admin")
 	public String admin(Model model) {
 		return "/admin";
 	}
 	
-
+	//마이 페이지
 	@Secured({ "ROLE_USER" })
 	@RequestMapping(value = "/user/info")
 	public String userInfo(Model model) {
 		return "/user_info";
 	}
 
+	//관리자 권한없음
 	@RequestMapping(value = "/denied")
 	public String denied(Model model) {
 		return "/denied";

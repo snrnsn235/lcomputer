@@ -13,6 +13,7 @@ public class User implements UserDetails {
 	private String password;		//u_password
 	private String uName;			//u_name
 	private String uDateTime;	//u_datetime
+	private int age;
 	
 	//security 관련
 	private Collection<? extends GrantedAuthority> authorities;
@@ -45,6 +46,14 @@ public class User implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public void setAccountNonExpired(boolean isAccountNonExpired) {

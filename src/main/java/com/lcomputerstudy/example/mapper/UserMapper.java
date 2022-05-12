@@ -21,5 +21,8 @@ public interface UserMapper {
 	   
 	   //회원리스트
 	   public List<User> getList();
+	   
+	   //회원 상세페이지
+	   public User viewMember(User user);
 }
 

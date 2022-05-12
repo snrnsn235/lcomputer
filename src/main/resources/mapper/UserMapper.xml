@@ -72,8 +72,19 @@
 	<select id="getList" resultType="User">
 		SELECT	 u_id   as username,
 		u_password		as password,
-		u_name 		 	as nName,
+		u_name 		 	as uName,
 		u_datetime 		as uDateTime
 		FROM lc_user
+	</select>
+	
+	<!-- 회원 상세피이지 -->
+	<select id="viewMember" resultType="User">
+		SELECT	 u_id   as username,
+		u_name 		 	as uName,
+		u_datetime 		as uDateTime,
+		u_password		as password,
+		u_age			as age
+		FROM lc_user
+		WHERE u_id = #{username}
 	</select>
 </mapper>

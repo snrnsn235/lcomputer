@@ -45,9 +45,16 @@ public class UserServiceImpl implements UserService {
 		return userMapper.readUser(username);
 	}
 
+	//회원리스트 출력하기
 	@Override
 	public List<User> getList() {
 		return userMapper.getList();
+	}
+	
+	//회원상세페이지
+	@Override
+	public User viewMember(User user) {
+		return userMapper.viewMember(user);
 	}
 
 }
