@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.User;
 
 public interface UserService extends UserDetailsService{
@@ -25,6 +27,16 @@ public interface UserService extends UserDetailsService{
 	   
 	   //회원 상세페이지
 	   public User viewMember(User user);
+
+	   public User getUser(User user);
+	   
+	   public void editUser(User user) throws Exception;
+	   
+	   public void deleteUser(User user);
+	   
+	   public int countUser();
+
+	   public List<User> selectUser(Pagination pg);
 
 	}
 

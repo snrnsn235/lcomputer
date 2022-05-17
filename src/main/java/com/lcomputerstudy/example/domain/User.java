@@ -9,13 +9,18 @@ public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 	
+	private int uIdx;
 	private String username;	//u_id
 	private String password;		//u_password
 	private String uName;			//u_name
 	private String uDateTime;	//u_datetime
 	private int age;
+	private String tel;
+	private String[] arr_tel;
+	private int rownum;
+	private String address;
 	
-	//security 관련
+	//security ����
 	private Collection<? extends GrantedAuthority> authorities;
 	
 	private boolean isAccountNonExpired;
@@ -23,6 +28,14 @@ public class User implements UserDetails {
 	private boolean isCredentialsNonExpired;
 	private boolean isEnabled;
 	
+
+	public int getuIdx() {
+		return uIdx;
+	}
+
+	public void setuIdx(int uIdx) {
+		this.uIdx = uIdx;
+	}
 
 	public String getuName() {
 		return uName;
@@ -56,6 +69,39 @@ public class User implements UserDetails {
 		this.age = age;
 	}
 
+	
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
+	public String[] getArr_tel() {
+		return arr_tel;
+	}
+
+	public void setArr_tel(String[] arr_tel) {
+		this.arr_tel = arr_tel;
+	}
+	
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public void setAccountNonExpired(boolean isAccountNonExpired) {
 		this.isAccountNonExpired = isAccountNonExpired;
 	}
@@ -73,8 +119,8 @@ public class User implements UserDetails {
 	}
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
-		//계정이 갖고 있는 권한 목록을 리턴한다.
-		//spring security에서 원한 객체는 org.springframework.security.core.GrantedAuthority인터페이스를 구현한 클래스 객체로 만들면 된다.
+		//������ ���� �ִ� ���� ����� �����Ѵ�.
+		//spring security���� ���� ��ü�� org.springframework.security.core.GrantedAuthority�������̽��� ������ Ŭ���� ��ü�� ����� �ȴ�.
 	}
 
 	@Override
@@ -120,4 +166,3 @@ public class User implements UserDetails {
 				+ ", isEnabled=" + isEnabled + "]";
 	}
 }
-

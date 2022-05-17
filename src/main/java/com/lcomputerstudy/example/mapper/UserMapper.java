@@ -3,6 +3,8 @@ package com.lcomputerstudy.example.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.security.core.GrantedAuthority;
+
+import com.lcomputerstudy.example.domain.Pagination;
 import com.lcomputerstudy.example.domain.User;
 
 @Mapper
@@ -24,5 +26,15 @@ public interface UserMapper {
 	   
 	   //회원 상세페이지
 	   public User viewMember(User user);
+	   
+	   public User getUser(User user);
+	   
+	   public void editUser(User user) throws Exception;
+	  
+	   public void deleteUser(User user);
+	   
+	   public int countUser();
+	   
+	   public List<User> selectUser(Pagination pg);
 }
 

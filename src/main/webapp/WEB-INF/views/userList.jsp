@@ -27,12 +27,25 @@ table tr td, table tr th {
 	width: 200px;
 	text-align: center;
 }
+li {
+		list-style:none;
+		width:50px;
+		line-height:50px;
+		border:1px solid #ededed;
+		float:left;
+		text-align:center;
+		margin:0 5px;
+		border-radius:5px;
+	}
 </style>
 <body>
 	<h1>회원리스트 관리페이지</h1>
 	<a href="/">돌아가기</a>
 	<hr>
 	<table>
+		<tr>
+			<td colspan="3">전체 회원수 : ${pagination.count }</td>
+		</tr>
 		<tr>
 			<td>회원이름</td>
 			<td>회원아이디</td>
@@ -50,7 +63,7 @@ table tr td, table tr th {
 		<ul>
 			<c:choose>
 				<c:when test="${pagination.startPage-1 != 0}">
-					<li style=""><a href="userlist.do?page=${pagination.prevPage}">◀</a>
+					<li><a href="">◀</a>
 					</li>
 				</c:when>
 			</c:choose>
@@ -61,13 +74,13 @@ table tr td, table tr th {
 						<li style="background-color: #ededed;"><span>${i}</span></li>
 					</c:when>
 					<c:when test="${ pagination.page ne i }">
-						<li><a href="userlist.do?page=${i}">${i}</a></li>
+						<li><a href="">${i}</a></li>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${pagination.nextPage lt pagination.lastPage }">
-					<li style=""><a href="userlist.do?page=${pagination.nextPage}">▶</a>
+					<li><a href="">▶</a>
 					</li>
 				</c:when>
 			</c:choose>

@@ -1,17 +1,30 @@
 package com.lcomputerstudy.example.domain;
 
 public class Board {
-	private int bId;
+	private int bIdx;
+	private String bId;
 	private String bTitle;
 	private String bContent;
 	private String bWriter;
 	private String bDateTime;
+	private int uIdx;
+	private String uId;
 
-	public int getbId() {
+
+	
+	public String getuId() {
+		return uId;
+	}
+
+	public void setuId(String uId) {
+		this.uId = uId;
+	}
+
+	public String getbId() {
 		return bId;
 	}
 
-	public void setbId(int bId) {
+	public void setbId(String bId) {
 		this.bId = bId;
 	}
 
@@ -46,4 +59,21 @@ public class Board {
 	public void setbDateTime(String bDateTime) {
 		this.bDateTime = bDateTime;
 	}
+
+	public int getbIdx() {
+		return bIdx;
+	}
+
+	public void setbIdx(int bIdx) {
+		this.bIdx = bIdx;
+	}
+
+	public int getuIdx() {
+		return uIdx;
+	}
+
+	public void setuIdx(int uIdx) {
+		this.uIdx = uIdx;
+	}
+	
 }

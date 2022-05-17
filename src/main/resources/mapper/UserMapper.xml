@@ -30,6 +30,9 @@
 		u_id,
 		u_password,
 		u_name,
+		u_tel,
+		u_age,
+		u_address,
 		u_isAccountNonExpired,
 		u_isAccountNonLocked,
 		u_isCredentialNonExpired,
@@ -38,6 +41,9 @@
 		#{username},
 		#{password},
 		#{uName},
+		#{tel},
+		#{age},
+		#{address},
 		#{isAccountNonExpired},
 		#{isAccountNonLocked},
 		#{isCredentialsNonExpired},
@@ -73,18 +79,67 @@
 		SELECT	 u_id   as username,
 		u_password		as password,
 		u_name 		 	as uName,
-		u_datetime 		as uDateTime
+		u_datetime 		as uDateTime,
+		u_age 			as age,
+		u_tel			as tel
 		FROM lc_user
 	</select>
 	
-	<!-- 회원 상세피이지 -->
+	<!-- 회원 상세페이지 -->
 	<select id="viewMember" resultType="User">
 		SELECT	 u_id   as username,
 		u_name 		 	as uName,
 		u_datetime 		as uDateTime,
 		u_password		as password,
-		u_age			as age
+		u_address		as address,
+		u_age			as age,
+		u_tel			as tel
 		FROM lc_user
 		WHERE u_id = #{username}
+	</select>
+	
+	<!-- 회원정보 수정페이지 -->
+	<select id="getUser" resultType="User">
+		SELECT	 u_id   as username,
+		u_name 		 	as uName,
+		u_address 		as address,
+		u_age			as age,
+		u_tel			as tel
+		FROM lc_user
+		WHERE u_id = #{username}
+	</select>
+	
+	<!-- 회원정보 수정하기 -->
+	<update id="editUser" parameterType="User">
+		UPDATE lc_user 	SET
+		u_id			=#{username},
+		u_name 			=#{uName},	 	
+		u_address		=#{address},
+		u_age			=#{age},
+		u_tel			=#{tel}
+		WHERE u_id = #{username}
+	</update>
+	
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteUser" parameterType="User">
+		Delete from lc_user
+		where u_id = #{username}
+	</delete>
+	
+	<!-- Pagination -->
+	<select id="countUser" resultType="int">
+		SELECT COUNT(*) FROM lc_user
+	</select>
+	<!-- Pagination 처리후 회원 조회 -->
+	<select id="selectUser" resultType="User">
+		SELECT * FROM (
+			SELECT ROWNUM RN, A.*
+					FROM(
+							SELECT *
+							FROM USER
+							ORDER BY SEQ DESC
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 </mapper>
